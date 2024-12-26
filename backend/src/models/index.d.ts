@@ -12,20 +12,22 @@ declare interface TodoDaoI {
     createTodo: (text: string) => Promise<TodoI | undefined>
     getTodos: () => Promise<TodoI[]>
     getTodoById: (id: number) => Promise<TodoI | undefined>
-    // getActiveTodos: () => Promise<TodoI[]>
-    // getCompletedTodos: () => Promise<TodoI[]>
-    // clearTodos: () => Promise<number>
-    // clearTodoById: (number) => Promise<number>
+    getActiveTodos: () => Promise<TodoI[]>
+    getCompletedTodos: () => Promise<TodoI[]>
+    updateTodoById: (id: number, complete: boolean) => Promise<number>
+    clearTodos: () => Promise<number>
+    clearTodoById: (id: number) => Promise<number>
 }
 
 declare interface TodoServiceI {
     createTodo: (dto: any) => Promise<TodoI | undefined>
     getTodos: () => Promise<TodoI[]>
     getTodoById: (dto: any) => Promise<TodoI | undefined>
-    // getActiveTodos: () => Promise<TodoI[]>
-    // getCompletedTodos: () => Promise<TodoI[]>
-    // clearTodos: () => Promise<number>
-    // clearTodoById: (dto: any) => Promise<number>
+    getActiveTodos: () => Promise<TodoI[]>
+    getCompletedTodos: () => Promise<TodoI[]>
+    updateTodoById: (dto: any) => Promise<TodoI | undefined>
+    clearTodos: () => Promise<number>
+    clearTodoById: (dto: any) => Promise<number>
 }
 
 declare interface TodoControllerI {
@@ -33,9 +35,10 @@ declare interface TodoControllerI {
     getTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
     getTodoById: (request: Request, response: Response, next: NextFunction) => Promise<void>
     getActiveTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
-    // getCompletedTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
-    // clearTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
-    // clearTodoById: (request: Request, response: Response, next: NextFunction) => Promise<void>
+    getCompletedTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
+    updateTodoById: (request: Request, response: Response, next: NextFunction) => Promise<void>
+    clearTodos: (request: Request, response: Response, next: NextFunction) => Promise<void>
+    clearTodoById: (request: Request, response: Response, next: NextFunction) => Promise<void>
 }
 
 export {

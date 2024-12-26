@@ -42,9 +42,55 @@ class TodoController implements TodoControllerI {
     /* GET: active todos */
     getActiveTodos = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
         try {
-            const todos = 'hello world'
+            const todos = await TodoService.getActiveTodos()
 
             response.json(todos)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    /* GET: complete todos */
+    getCompletedTodos = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        try {
+            const todos = await TodoService.getCompletedTodos()
+
+            response.json(todos)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    /* PATCH: update todo */
+    updateTodoById = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        try {
+            const { params } = request
+            const todo = await TodoService.updateTodoById(params)
+
+            response.json(todo)
+        } catch (error) {
+            next(error)
+        }
+    };
+
+    /* DELETE: clear all todos */
+    clearTodos = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        try {
+            const removedRowsNo = await TodoService.clearTodos()
+
+            response.json(removedRowsNo)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    /* DELETE: delete todos */
+    clearTodoById = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        try {
+            const { params } = request
+            const removedRowsNo = await TodoService.clearTodoById(params)
+
+            response.json(removedRowsNo)
         } catch (error) {
             next(error)
         }
